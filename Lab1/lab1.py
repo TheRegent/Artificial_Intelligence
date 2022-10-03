@@ -1,5 +1,3 @@
-import matplotlib
-matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import networkx as nx
 import random
@@ -12,8 +10,7 @@ def ways_draw(delete, N=5):
     else:
         G = nx.grid_2d_graph(N, N)
         pos = dict((n, n) for n in G.nodes())
-        labels = dict(((i, j), i + (N - 1 - j) * N) for i, j in G.nodes())
-        nx.draw_networkx(G, pos=pos, labels=labels, with_labels=False, node_size=300, node_color="PaleGreen")
+        nx.draw_networkx(G, pos=pos, with_labels=False, node_size=300, node_color="PaleGreen")
         plt.show()
 
         while delete > 0:
@@ -25,11 +22,10 @@ def ways_draw(delete, N=5):
                 delete -= 1
             else:
                 G.add_edge(chosen_edge[0], chosen_edge[1])
-        nx.draw_networkx(G, pos=pos, labels=labels, with_labels=False, node_size=300, node_color="PaleGreen")
+        nx.draw_networkx(G, pos=pos, with_labels=False, node_size=300, node_color="PaleGreen")
         plt.show()
 
 if __name__ == '__main__':
     N = int(input("Введіть розмірність матриці: "))
     delete = int(input("Введіть кількість ребер на видалення: "))
     ways_draw(delete, N)
-
